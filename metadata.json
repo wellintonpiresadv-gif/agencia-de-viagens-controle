@@ -1,0 +1,8 @@
+{
+  "name": "OmniChannel Central Dashboard",
+  "description": "A high-performance helpdesk system designed to centralize multiple communication origins into a single queue for agents, featuring AI-powered response suggestions.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
