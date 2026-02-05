@@ -1,15 +1,26 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Função para obter o cliente de forma segura, evitando erros se a chave estiver ausente
+const getAiClient = () => {
+  const apiKey = (window as any).process?.env?.API_KEY || "";
+  if (!apiKey) {
+    console.warn("API_KEY não encontrada. As sugestões de IA estarão desativadas.");
+    return null;
+  }
+  return new GoogleGenAI({ apiKey });
+};
 
 export async function getSmartSuggestion(conversationContext: string): Promise<string> {
   try {
+    const ai = getAiClient();
+    if (!ai) return "Sugestão inteligente indisponível (Chave API não configurada).";
+
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
-      contents: `You are a helpful customer service agent. Based on the following chat history, suggest a professional and concise reply to the client. Return only the suggested text without any quotes or preamble.
+      contents: `Você é um atendente de suporte prestativo. Baseado no histórico abaixo, sugira uma resposta curta e profissional em português para o cliente. Retorne apenas o texto da resposta.
       
-      History:
+      Histórico:
       ${conversationContext}`,
       config: {
         temperature: 0.7,
