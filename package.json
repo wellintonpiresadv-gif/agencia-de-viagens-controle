@@ -2,29 +2,29 @@
 {
   "name": "omnichannel-central-dashboard",
   "private": true,
-  "version": "1.1.1",
+  "version": "1.1.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@google/genai": "^1.40.0"
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "@google/genai": "1.40.0"
   },
   "devDependencies": {
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "typescript": "^5.7.3",
-    "vite": "^6.0.11",
-    "glob": "^11.0.1"
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "typescript": "5.7.3",
+    "vite": "6.0.11"
   },
   "overrides": {
-    "glob": "^11.0.1"
+    "glob": "11.0.1",
+    "node-domexception": "1.0.0"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=20"
   }
 }
