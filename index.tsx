@@ -3,31 +3,23 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 
-// Captura erros globais de runtime para evitar tela branca silenciosa
-window.onerror = function(message, source, lineno, colno, error) {
-  console.error("Erro Global Detectado:", message, "em", source, ":", lineno);
-  return false;
-};
+const container = document.getElementById('root');
 
-const rootElement = document.getElementById('root');
-
-if (!rootElement) {
-  console.error("Erro Crítico: Elemento #root não encontrado no DOM.");
-} else {
+if (container) {
   try {
-    const root = createRoot(rootElement);
+    const root = createRoot(container);
     root.render(
       <React.StrictMode>
         <App />
       </React.StrictMode>
     );
-  } catch (error) {
-    console.error("Erro ao inicializar o React:", error);
-    rootElement.innerHTML = `
-      <div style="padding: 20px; font-family: sans-serif; text-align: center;">
-        <h2>Ocorreu um erro ao carregar o aplicativo.</h2>
-        <p>Verifique o console do navegador para mais detalhes.</p>
-      </div>
-    `;
+  } catch (err) {
+    console.error("Falha ao renderizar App React:", err);
+    container.innerHTML = `<div style="padding:40px; color:red; text-align:center;">
+      <h1>Erro de Carregamento</h1>
+      <p>Ocorreu um problema ao iniciar o Dashboard. Por favor, recarregue a página.</p>
+    </div>`;
   }
+} else {
+  console.error("Elemento root não encontrado no HTML.");
 }

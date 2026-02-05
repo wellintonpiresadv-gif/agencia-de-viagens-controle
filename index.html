@@ -10,25 +10,21 @@
     <style>
       body {
         font-family: 'Inter', sans-serif;
+        background-color: #f8fafc;
       }
       /* Custom scrollbar */
-      ::-webkit-scrollbar {
-        width: 6px;
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 3px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8;
-      }
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+      ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
-    <!-- Shim fundamental: deve vir ANTES do importmap e dos scripts -->
+    <!-- Shim de ambiente: define process.env antes de qualquer carregamento de módulo -->
     <script>
-      window.process = { env: { API_KEY: "" } };
+      window.process = { 
+        env: { 
+          NODE_ENV: 'production'
+        } 
+      };
     </script>
     <script type="importmap">
 {
@@ -38,14 +34,14 @@
     "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
     "@google/genai": "https://esm.sh/@google/genai@1.40.0",
     "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/"
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "vite": "https://esm.sh/vite@^7.3.1"
   }
 }
 </script>
   </head>
-  <body class="bg-slate-50 text-slate-900 h-screen overflow-hidden">
+  <body class="h-screen overflow-hidden">
     <div id="root"></div>
-    <!-- Carregamento do ponto de entrada -->
     <script type="module" src="index.tsx"></script>
   </body>
 </html>
